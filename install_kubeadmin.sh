@@ -11,7 +11,6 @@ net.bridge.bridge-nf-call-iptables = 1
 EOF
 sudo sysctl --system
 
-
 ## Install docker 
 sudo apt update
 sudo apt install -y apt-transport-https ca-certificates curl gnupg2 software-properties-common
@@ -49,12 +48,9 @@ sudo apt-get update
 sudo apt-get install -y kubelet kubeadm kubectl
 sudo apt-mark hold kubelet kubeadm kubectl
 
-
 # Init kubeadmin (RUN IN MASTER)
 
 #kubeadm init // uncomment in the case of the master
-
-
 
 # join master   (RUN IN NODE)
 
@@ -62,18 +58,12 @@ sudo apt-mark hold kubelet kubeadm kubectl
 
 #To make kubectl work for your non-root user, run these commands, which are also part of the kubeadm init output:
 
-
 mkdir -p $HOME/.kube
 sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
 
+#Alternatively, if you are the root user, you can run:
+export KUBECONFIG=/etc/kubernetes/admin.conf
 
 # Add node network (UNCOMMENT TO RUN IN MASTER)
 # kubectl apply -f https://docs.projectcalico.org/latest/manifests/calico.yaml
-
-
-
-
-
-#Alternatively, if you are the root user, you can run:
-export KUBECONFIG=/etc/kubernetes/admin.conf
