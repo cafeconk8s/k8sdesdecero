@@ -37,7 +37,7 @@ EOF
 
 # restart docker
 
-systemctl restart docker.service
+sudo systemctl restart docker.service
 
 # install kubeadmin, kubectl and kubelet
 sudo apt-get update
@@ -50,15 +50,15 @@ sudo apt-get install -y kubelet kubeadm kubectl
 sudo apt-mark hold kubelet kubeadm kubectl
 
 
-# Init kubeadmin
+# Init kubeadmin (RUN IN MASTER)
 
-kubeadm init
+#kubeadm init // uncomment in the case of the master
 
 
 
-# join master
+# join master   (RUN IN NODE)
 
-# from node worker use kubeadm join to add node work to be part of the cluster
+# from node worker use kubeadm join to add node work to be part of the cluster, the command "kubeadm join ...." is the result that shows us at the end when we start the cluster with "kubeadm initi" in master node.
 
 #To make kubectl work for your non-root user, run these commands, which are also part of the kubeadm init output:
 
@@ -66,6 +66,13 @@ kubeadm init
 mkdir -p $HOME/.kube
 sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
+
+
+# Add node network (UNCOMMENT TO RUN IN MASTER)
+# kubectl apply -f https://docs.projectcalico.org/latest/manifests/calico.yaml
+
+
+
 
 
 #Alternatively, if you are the root user, you can run:
