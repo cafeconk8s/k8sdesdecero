@@ -18,7 +18,6 @@ curl -fsSL https://download.docker.com/linux/debian/gpg | sudo apt-key add -
 sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/debian $(lsb_release -cs) stable"
 sudo apt update
 sudo apt install -y docker-ce
-sudo systemctl status docker
 
 # change docker cgroupdirve to systemd
 
@@ -48,22 +47,25 @@ sudo apt-get update
 sudo apt-get install -y kubelet kubeadm kubectl
 sudo apt-mark hold kubelet kubeadm kubectl
 
-# Init kubeadmin (RUN IN MASTER)
+## Init kubeadmin (RUN IN MASTER)
 
 #kubeadm init // uncomment in the case of the master
 
-# join master   (RUN IN NODE)
+## join master   (RUN IN NODE)
 
-# from node worker use kubeadm join to add node work to be part of the cluster, the command "kubeadm join ...." is the result that shows us at the end when we start the cluster with "kubeadm initi" in master node.
+## from node worker use kubeadm join to add node work to be part of the cluster, the command "kubeadm join ...." is the result that shows us at the end when we start the cluster with "kubeadm initi" in master node.
 
-#To make kubectl work for your non-root user, run these commands, which are also part of the kubeadm init output:
+## To make kubectl work for your non-root user, run these commands, which are also part of the kubeadm init output:
 
-mkdir -p $HOME/.kube
-sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
-sudo chown $(id -u):$(id -g) $HOME/.kube/config
+
+## Use this in master (AFTER kubeadm init, UNCOMMENT THE LINE BELOW TO RUN IN MASTER)
+
+#mkdir -p $HOME/.kube
+#sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+#sudo chown $(id -u):$(id -g) $HOME/.kube/config
 
 #Alternatively, if you are the root user, you can run:
-export KUBECONFIG=/etc/kubernetes/admin.conf
+#export KUBECONFIG=/etc/kubernetes/admin.conf
 
-# Add node network (UNCOMMENT TO RUN IN MASTER)
+# Add node network (UNCOMMENT THE LINE BELOW TO RUN IN MASTER)
 # kubectl apply -f https://docs.projectcalico.org/latest/manifests/calico.yaml
