@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: myclusterip-pod
+  labels:
+    app: nginx 
+    type: mobile
+spec:
+  containers:
+  - name: nginx-container
+    image: nginx
