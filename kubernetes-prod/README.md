@@ -1,6 +1,7 @@
-# Para poder correr kubernetes en PROD en On-premise, hay muchas formas de hacer y una de ellas es usar kubadm, aqui explicaremos como hacerlo.
+Para poder correr kubernetes en PROD en On-premise, hay muchas formas de hacer y una de ellas es usar kubadm, aqui explicaremos como hacerlo.
 
 # Instalar kubeadm, docker, kubectl y kubelet
+
 `
 chmod +x install_kubeadm.sh
 ./install_kubeadm.sh
@@ -17,12 +18,14 @@ kubeadm init
 
 - Correr el comando kubectl con usuario non-root
 
+`
 mkdir -p $HOME/.kube
 sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
-
+`
 
 - Anadir el node Network (en este caso sera calico):
+
 `
 kubectl apply -f https://docs.projectcalico.org/latest/manifests/calico.yaml
 `
@@ -48,14 +51,18 @@ kubeadm join 10.132.0.13:6443 --token q7vnav.i1gzk2pepb0bm84f \
 
 # Deployar una aplicacion:
 
+` 
 kubectl apply -f deployment.yaml
+`
 
 # Ver el resultado y cuantos nodos tenemos
+
 `
 kubectl get pod
 `
 
 # Vamos a ver en que nodos estan con el comando:
+
 `
 kubectl get pod -o wide
 `
