@@ -45,32 +45,26 @@ kubeadm join 10.132.0.13:6443 --token q7vnav.i1gzk2pepb0bm84f \
 
 
 
-# Troubleshooting
+Troubleshooting:
+----------------
 
 
 
-# Deployar una aplicacion:
+Deployar una aplicacion:
+------------------------
 
 ` 
 kubectl apply -f deployment.yaml
 `
 
-# Ver el resultado y cuantos nodos tenemos
+- Ver el resultado y cuantos nodos tenemos:
 
 `
 kubectl get pod
 `
 
-Vamos a ver en que nodos estan con el comando:
-----------------------------------------------
+- Vamos a ver en que nodos estan con el comando:
 
 `
 kubectl get pod -o wide
 `
-
-
-
-
-
-
-
