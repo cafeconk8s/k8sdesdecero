@@ -61,7 +61,8 @@ kubectl apply -f deployment.yaml
 kubectl get pod
 `
 
-# Vamos a ver en que nodos estan con el comando:
+Vamos a ver en que nodos estan con el comando:
+----------------------------------------------
 
 `
 kubectl get pod -o wide
