@@ -6,13 +6,13 @@ spec:
   selector:
     matchLabels:
       app: nginx
-      department: prod
+      env: prod
   replicas: 2
   template:
     metadata:
       labels:
         app: nginx
-        department: prod
+        env: prod
     spec:
       containers:
       - name: hello

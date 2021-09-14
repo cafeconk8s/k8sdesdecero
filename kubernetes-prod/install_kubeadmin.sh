@@ -69,3 +69,7 @@ sudo apt-mark hold kubelet kubeadm kubectl
 
 # Add node network (UNCOMMENT THE LINE BELOW TO RUN IN MASTER)
 # kubectl apply -f https://docs.projectcalico.org/latest/manifests/calico.yaml
+
+
+#Configure Master server to schedule pods
+#kubectl taint nodes --all node-role.kubernetes.io/master-
